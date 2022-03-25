@@ -579,7 +579,7 @@ def sample_captions_beam_search(model, data_loader, beam_size, device, temperatu
                 top_k_scores, top_k_words = scores.view(-1).topk(k, 0, True, True)  # (s)
 
             # Convert unrolled indices to actual indices of scores
-            prev_word_inds = top_k_words / len(vocab)  # (s)
+            prev_word_inds = top_k_words // len(vocab)  # (s)
             next_word_inds = top_k_words % len(vocab)  # (s)
 
             # Add new words to sequences
