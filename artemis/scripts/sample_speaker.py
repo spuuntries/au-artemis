@@ -88,4 +88,5 @@ if __name__ == '__main__':
         final_results.append([config, df, attn_weights])
         print('Done.')
 
-    pickle_data(args.out_file, final_results)
+    #pickle_data(args.out_file, final_results)
+    df.to_pickle(args.out_file) # only return the DataFrame
