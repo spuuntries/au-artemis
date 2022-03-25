@@ -205,7 +205,7 @@ def custom_grounding_dataset_similar_to_affective_loader(grounding_data_csv, loa
     image_files = df['image_file']
     dummy = pd.Series(np.ones(len(image_files), dtype=int) * -1)
     if 'grounding_emotion' in df.columns:
-        emotions = df.emotion.apply(emotion_to_int)
+        emotions = df.grounding_emotion.apply(emotion_to_int)
     else:
         emotions = dummy
 
