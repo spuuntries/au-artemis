@@ -34,3 +34,13 @@ artemis_temp/evaluation/pycocoevalcap/spice/lib/stanford-corenlp-3.6.0-models.ja
 artemis_temp/evaluation/pycocoevalcap/spice/lib/stanford-corenlp-3.6.0.jar
 artemis_temp/evaluation/pycocoevalcap/spice/cache/*
 artemis_temp/evaluation/pycocoevalcap/spice/tmp/*
+
+# Supervised project setup
+artemis-venv/*
+official_data/*
+preprocessed_artemis/*
+pretrained_models/*
+
+# Results 
+custom_scripts/emo_caption_custom_images/outputs/*
+custom_scripts/emo_caption_custom_images/temporary_files/*
