@@ -1,33 +1,41 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[14]:
-
-
-from importlib import import_module
 import os
+from os import path
 import subprocess
+import argparse
+from importlib import import_module
+
+parser = argparse.ArgumentParser()
+parser.add_argument("model",
+                    help="Path to the pretrained captioning model.")
+parser.add_argument("images",
+                    help="Folder with images to caption.")
 
 
-# # Initialize elevant directories
+# init paths
+REPO_DIR = os.environ["ARTEMIS_DIR"]
+PREPROCESSED_DATA = path.join(REPO_DIR, "preprocessed_artemis")
+SAMPLE_SPEAKER = path.join(REPO_DIR, "artemis", "scripts", "sample_speaker.py")
+IMG2EMO = path.join(REPO_DIR, "pretrained_models", "img2emo", "img2emo.pt") 
 
-# In[ ]:
-
+# # Initialize relevant directories
 
 #main ARTEMIS directory
-artemis_repo_dir = os.environ["ARTEMIS_DIR"]
+# artemis_repo_dir = os.environ["ARTEMIS_DIR"]
 
 # where is the sample_speaker.py script?
-sample_speaker_script = os.path.join(artemis_repo_dir,"artemis", "scripts", "sample_speaker.py")
+# sample_speaker_script = os.path.join(artemis_repo_dir,"artemis", "scripts", "sample_speaker.py")
 
 #path to ArtEmis/COCO preprocessed data
-preprocessed_data_dir = os.path.join(artemis_repo_dir, "preprocessed_artemis")
+# preprocessed_data_dir = os.path.join(artemis_repo_dir, "preprocessed_artemis")
 
 #where is the pretrained model?
 model_path = os.path.join(artemis_repo_dir, "pretrained_models", "emo_grounded_model", "checkpoints","best_model.pt")
 
 #where is the image to emotion classifier?
-img2emo = os.path.join(artemis_repo_dir, "pretrained_models", "img2emo","img2emo.pt")
+#img2emo = os.path.join(artemis_repo_dir, "pretrained_models", "img2emo","img2emo.pt")
 
 #parent folder for this script
 custom_caption_dir = os.path.join(artemis_repo_dir, "custom_scripts","emo_caption_custom_images")
@@ -57,9 +65,6 @@ csv_out_file = os.path.join(custom_caption_dir, "outputs","custom_captions.csv")
 # # Construct the CSV for custom images
 
 # The `sample_speaker.py` script needs a csv of one column with header `image_file` and whose rows are the absolute paths of the images to be captioned.
-
-# In[ ]:
-
 
 #get image paths
 filenames = [os.path.join(img_dir, filename) for filename in os.listdir(img_dir) if os.path.isfile(os.path.join(img_dir, filename))]
