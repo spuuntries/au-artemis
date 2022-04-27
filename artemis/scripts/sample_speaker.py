@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # custom set of images to annotate. Then based on the -split you designated it will annotate this data.
     speaker, epoch, data_loaders = load_saved_speaker(args.speaker_saved_args, args.speaker_checkpoint,
                                                       with_data=True, verbose=True)
-    device = torch.device("cuda:" + args.gpu)
+    device = torch.device("cuda:" + args.gpu if torch.cuda.is_available() else "cpu")
     speaker = speaker.to(device)
     eos = speaker.decoder.vocab.eos
     working_data_loader = data_loaders[args.split]
